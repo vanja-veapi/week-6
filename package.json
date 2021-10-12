@@ -1,0 +1,14 @@
+{
+  "name": "week-6",
+  "version": "1.0.0",
+  "description": "**To do this challenge, you need a good understanding of HTML, CSS and JavaScript.**",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vanja Veapi",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "prettier": "2.4.1"
+  }
+}
