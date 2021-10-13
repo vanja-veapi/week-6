@@ -4,6 +4,7 @@ window.addEventListener("load", function () {
     let operator = null;
     let result = false;
     let dot = false;
+    let isFirstMinus = true;
 
     
     let output = this.document.querySelector("#output");
@@ -19,7 +20,7 @@ window.addEventListener("load", function () {
         if(between(e.key, 0, 9)) {
             console.log(e.key);
             print(e.key);
-        } else if(e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/" || e.key === "Enter") {
+        } else if(e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") {
             apply(e);
         } else if(e.key === "Backspace") {
             removeLastCharacter();
@@ -35,6 +36,7 @@ window.addEventListener("load", function () {
         lastNumber = 0;
         currentNumber = 0;
         output.value = "0";
+        isFirstMinus = true;
         dot = false;
         result = false;
         operator = null;
@@ -172,6 +174,11 @@ window.addEventListener("load", function () {
     {
         currentNumber = parseFloat(output.value);
         console.log(currentNumber);
+        if(output.value.substring(0,1) === "-" && isFirstMinus === true)
+        {
+            isFirstMinus = false;
+            return output.value;
+        }
         if(operator !== "=" && operator !== null)
         {
             previousNumber = calculate(previousNumber, currentNumber, operator);
@@ -187,13 +194,16 @@ window.addEventListener("load", function () {
             nextOperator = e.key;
         } else if(e.key === "*") {
             nextOperator = "x";
-        } else if(e.key === "Enter") {
-            nextOperator = "=";
         } else {
             nextOperator = e.target.value;
         }
         operator = nextOperator;
         console.log(e);
+        /**
+         *  else if(e.key === "Enter") {
+            nextOperator = "=";
+        }
+         */
     
     }
 
@@ -243,5 +253,3 @@ window.addEventListener("load", function () {
         return x >= Number(min) && Number(x <= max);
     }
 });
-
-// Bag sa resetom je taj kad kliknem na reset dugme, dugme ostane selektovano i tako kad ja pritisnem enter ono se klikne

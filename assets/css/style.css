@@ -267,6 +267,7 @@ p {
   height: 16px;
   border-radius: 50%;
   margin: 5px 0 5px 5px;
+  cursor: pointer;
 }
 .toggle_up {
   margin-bottom: 5px;
@@ -355,5 +356,11 @@ table {
   }
   .keys {
     padding: 24px 24px 24px 28px;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .container {
+    margin: 96px 0;
   }
 }
