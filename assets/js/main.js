@@ -192,7 +192,11 @@ window.addEventListener("load", function () {
         if(e.key === "+" || e.key === "-" || e.key === "/")
         {
             nextOperator = e.key;
-        } else if(e.key === "*") {
+        } else if(output.value.substring(0,1) === "-" && isFirstMinus === true) {
+            isFirstMinus = false;
+            return output.value;
+        }
+        else if(e.key === "*") {
             nextOperator = "x";
         } else {
             nextOperator = e.target.value;
