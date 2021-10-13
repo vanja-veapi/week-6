@@ -333,7 +333,7 @@ table {
     max-width: 327px;
   }
   .input--form {
-    padding: 26px 24px 26px 169px;
+    padding: 26px 6px 26px 20px;
     font-size: 32px;
   }
   .key__appearance,
@@ -363,7 +363,7 @@ table {
     max-width: 270px;
   }
   .keys {
-    padding: unset;
+    padding: 24px 10px 24px 10px;
   }
 }
 @media screen and (max-height: 700px) {
