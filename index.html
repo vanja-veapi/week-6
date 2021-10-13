@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Week 6 | Calculator app</title>
+  </head>
+  <body>
+    <div id="container--fluid" class="container--fluid bg--main1 d--flex justify--content-center align--items-center">
+      <!-- Container -->
+      <div class="container">
+        <!-- Header container -->
+        <div class="header d--flex justify--content-between">
+          <p class="p d--flex align--items-end text--white">calc</p>
+          <div class="p toggles text--white">
+            <div class="toggle_up d--flex justify--content-evenly">
+              <div class="empty__div"></div>
+              <div class="numbers d--flex">
+                <p>1</p>
+                <p>2</p>
+                <p>3</p>
+              </div>
+            </div>
+            <div class="toggle__down d--flex justify--content-between align--items-center">
+              <p class="text--uppercase letter--spacing-1">Theme</p>
+              <div id="toggle" class="toggle screen--bg1">
+                <div id="circle" class="circle bg--red"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Input -->
+        <div class="input__result">
+          <input type="text" id="output" class="input--form text--white screen--bg1" value="0" disabled />
+        </div>
+        <!-- Keys -->
+        <div id="keys" class="keys toggle--bg1">
+          <table class="table">
+            <tr>
+              <td>
+                <input type="button" value="7" id="seven" class="key__appearance key__num key--bg1 btn1" />
+                <input type="button" value="4" id="four" class="key__appearance key__num key--bg1 btn1" />
+                <input type="button" value="1" id="one" class="key__appearance key__num key--bg1 btn1" />
+                <input type="button" value="." id="dot" class="key__appearance key__num key--bg1 btn1" />
+              </td>
+              <td>
+                <input type="button" value="8" id="eight" class="key__appearance key__num key--bg1 btn1" />
+                <input type="button" value="5" id="five" class="key__appearance key__num key--bg1 btn1" />
+                <input type="button" value="2" id="two" class="key__appearance key__num key--bg1 btn1" />
+                <input type="button" value="0" id="zero" class="key__appearance key__num key--bg1 btn1" />
+              </td>
+              <td>
+                <input type="button" value="9" id="nine" class="key__appearance key__num key--bg1 btn1" />
+                <input type="button" value="6" id="six" class="key__appearance key__num key--bg1 btn1" />
+                <input type="button" value="3" id="three" class="key__appearance key__num key--bg1 btn1" />
+                <input type="button" value="/" id="divide" class="key__appearance operator key--bg1 btn1" />
+              </td>
+              <td>
+                <input type="button" value="DEL" id="delete" class="key__del_reset clear btn--bg1" />
+                <input type="button" value="+" id="plus" class="key__appearance operator key--bg1 btn1" />
+                <input type="button" value="-" id="minus" class="key__appearance key__num operator key--bg1 btn1" />
+                <input type="button" value="x" id="multiplication" class="key__appearance operator key--bg1 btn1" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <input type="button" value="RESET" id="reset" class="key__del_reset colspan btn--bg1" />
+              </td>
+              <td colspan="2">
+                <input type="button" value="=" id="equal" class="key__appearance1 operator colspan btn--bg1-equal" />
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
