@@ -363,7 +363,15 @@ table {
     max-width: 270px;
   }
   .keys {
-    padding: 24px 10px 24px 10px;
+    padding: 15px 15px 15px 25px;
+  }
+  .key__appearance,
+  .key__appearance1,
+  .key__del_reset {
+    min-width: 50px;
+  }
+  .colspan {
+    min-width: 110px;
   }
 }
 @media screen and (max-height: 700px) {
