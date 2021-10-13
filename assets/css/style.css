@@ -358,7 +358,14 @@ table {
     padding: 24px 24px 24px 28px;
   }
 }
-
+@media screen and (max-width: 340px) {
+  .container {
+    max-width: 270px;
+  }
+  .keys {
+    padding: unset;
+  }
+}
 @media screen and (max-height: 700px) {
   .container {
     margin: 96px 0;
