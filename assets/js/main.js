@@ -5,6 +5,7 @@ window.addEventListener("load", function () {
     let result = false;
     let dot = false;
     let isFirstMinus = true;
+    let isOperator = true;
 
     
     let output = this.document.querySelector("#output");
@@ -33,10 +34,11 @@ window.addEventListener("load", function () {
 
     let reset = this.document.querySelector("#reset");
     reset.addEventListener("click", function () {
-        lastNumber = 0;
+        previousNumber = 0;
         currentNumber = 0;
         output.value = "0";
         isFirstMinus = true;
+        isOperator = true;
         dot = false;
         result = false;
         operator = null;
@@ -49,7 +51,6 @@ window.addEventListener("load", function () {
 
     let circle = document.querySelector("#circle") //Pomera se za 20px
     let saveColor = localStorage.getItem("saveColor");
-    console.log(saveColor)
     switch(saveColor)
     {
         case "bg2":
@@ -134,8 +135,7 @@ window.addEventListener("load", function () {
             e.classList.add(text);
         })
 
-        if(bgMain === "bg--main1")
-        {
+        if(bgMain === "bg--main1") {
             text = "text--dark";
         }
         keyAppearance.forEach(key => {
@@ -173,20 +173,19 @@ window.addEventListener("load", function () {
     function apply(e)
     {
         currentNumber = parseFloat(output.value);
-        console.log(currentNumber);
         if(output.value.substring(0,1) === "-" && isFirstMinus === true)
         {
             isFirstMinus = false;
             return output.value;
         }
-        if(operator !== "=" && operator !== null)
+        if(operator !== "=" &&  operator !== null)
         {
             previousNumber = calculate(previousNumber, currentNumber, operator);
             output.value = previousNumber;
             result = true;
         } else {
             previousNumber = currentNumber;
-            output.value = "";
+            output.value = previousNumber;
         }
         let nextOperator;
         if(e.key === "+" || e.key === "-" || e.key === "/")
@@ -202,13 +201,6 @@ window.addEventListener("load", function () {
             nextOperator = e.target.value;
         }
         operator = nextOperator;
-        console.log(e);
-        /**
-         *  else if(e.key === "Enter") {
-            nextOperator = "=";
-        }
-         */
-    
     }
 
     function removeLastCharacter()
@@ -221,39 +213,35 @@ window.addEventListener("load", function () {
     function print(e)
     {
         let val = this.value;
-        console.log(val);
         if(e === e.toString())
         {
             val = e;
         }
-        if (result) 
-        {
+        if (result) {
             result = false;
             output.value = "";
         }
-        
-        if (output.value.substring(0, 1) === "0" && this.value !== ".") 
-        { 
+        if (output.value.substring(0, 1) === "0" && this.value !== ".") { 
             return output.value === "0" ? output.value = "" + val : output.value += val;
         }
 
-        if (this.value === "." && dot === false) 
-        {
+        if (this.value === "." && dot === false) {
             output.value === "" ? output.value = "0." : output.value += ".";
             dot = true;
-            console.log(output.value);
         }
-        if(dot === true && this.value === ".")
-        {
+        if(dot === true && this.value === ".") {
             return output.value = output.value;
+        } 
+        else if(operator !== null && isOperator === true) {
+            output.value = "";
+            output.value += val;
+            isOperator = false;
         }
-        else
-        {
+        else {
             output.value += val;
         }
     }
-    function between(x, min, max)
-    {
+    function between(x, min, max) {
         return x >= Number(min) && Number(x <= max);
     }
 });
