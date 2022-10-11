@@ -42,7 +42,8 @@ function printNumber(val) {
 
     if (val === "-" || val === "=") return
 
-    output.value === "0" ? output.value = val : output.value += val;
+    if (output.value === "0") output.value = "";
+    output.value += val;
   }
 }
 
@@ -50,7 +51,6 @@ function printOperator(o) {
   if (!operator) {
     // Restartujem dot na false da bi drugi broj isto mogao da bude decimalan
     dot = false;
-
     operator = o;
     output.value += o
   }
@@ -61,7 +61,7 @@ function calculate(a, b, operator) {
     return a + b;
   } else if (operator === "-") {
     return a - b;
-  } else if (operator === "x") {
+  } else if (operator === "*") {
     return a * b;
   } else if (operator === "/") {
     return a / b;
@@ -69,6 +69,8 @@ function calculate(a, b, operator) {
 }
 
 function removeLastCharacter() {
+  if (output.value.length === 1) output.value = "00";
+
   let str = output.value.substring(0, output.value.length - 1);
   dot = false;
   return output.value = str;
@@ -77,15 +79,18 @@ function removeLastCharacter() {
 function calc() {
   previousNumber = output.value; // Ako samo kliknem jednako da mi ispise ovaj rez
   if (operator) {
-    let firstNegativeNumber = null
     // Ako je prvi karakter minus, to znaci da je negativan broj i ispod kazem programu izbaci mi - iz stringa i onda ga ubacujem u sledecem ifu...
-    const splitString = output.value[0] === "-" ? output.value.substr(1).split(operator) : output.value.split(operator);
+    const [a, b] = output.value[0] === "-" ? output.value.substr(1).split(operator) : output.value.split(operator);
 
     if (output.value[0] === "-") {
-      firstNegativeNumber = "-".concat(splitString[0]);
+      a = "-".concat(splitString[0]);
     }
 
-    previousNumber = calculate(parseFloat(output.value[0] === "-" ? firstNegativeNumber : splitString[0]), parseFloat(splitString[1]), operator)
+    // Ako korisnik pokusa uradi operaciju tipa 3 - prazno -> // Broj b ce da ima vrednost isto kao A, inace b je u tom trenutku <empty string>
+    previousNumber = !b ? calculate(parseFloat(a), parseFloat(a), operator) : calculate(parseFloat(a), parseFloat(b), operator)
+    if (Number.isInteger(previousNumber)) {
+      previousNumber.toFixed(2);
+    }
     operator = null;
   }
 
